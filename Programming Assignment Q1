@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+class Area{
+    public:
+        double getVal(int x, int y){ return (x*y); }
+};
+
+class Perimeter{
+    public:
+        double getVal(int x, int y){ return (2*(x+y)); }
+};
+
+class Rectangle : public Area, public Perimeter{ //LINE-1
+    int x, y;
+    public:
+        Rectangle(int _x, int _y) : x(_x), y(_y){ }
+
+        double getArea(){ return Area::getVal(x,y); } //LINE-2
+
+        double getPerimeter(){ return Perimeter::getVal(x,y); } //LINE-3
+};
+
+int main(){
+    int a, b;
+    cin >> a >> b;
+    Rectangle r(a,b);
+    cout << r.getArea() << ", " << r.getPerimeter();
+    return 0;
+}
